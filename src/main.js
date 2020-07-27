@@ -3,21 +3,13 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
 import 'mint-ui/lib/style.css'
-// import ajaxFun from './service/requestFun'
-import { Button, Tabbar, TabItem, TabContainer, TabContainerItem,
-  Cell, Toast, Picker } from 'mint-ui'
 import LinkageBase from './components/linkageBase';
 import ShowScan from './components/ShowScan/index'
+import {Button,Toast} from 'vant'  //需要什么组件直接在这里添加组件名称
+Vue.component(Button.name, Button)  //注册使用
+Vue.component(Toast.name, Toast);
 Vue.use(ShowScan);
 Vue.use(LinkageBase);
-Vue.component(Tabbar.name, Tabbar);
-Vue.component(TabItem.name, TabItem);
-Vue.component(Button.name, Button)
-Vue.component(TabContainer.name, TabContainer);
-Vue.component(TabContainerItem.name, TabContainerItem);
-Vue.component(Cell.name, Cell);
-Vue.component(Picker.name, Picker);
-
 Object.assign(Vue.prototype, {
   $toast: Toast
 });

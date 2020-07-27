@@ -1,5 +1,6 @@
 <template>
   <div class="exchange-ctr">
+
     <div class="code-con">
       <p id="content">哈哈123我合肥和瓦尔和 11月8号上午10点，成氏商城试运行首次会员日活动推出仅2小时，就吸引了大量用户参与，
         导致服务器拥堵长达半小时。应广大会员用户的要求，商城团队连夜新开发多项功能如月卡升级功能，
@@ -25,8 +26,8 @@
 // @ is an alias to /src
 import wechat from "../../common/js/wechat";
 import { jsConfigApi } from '../../service/apiUrl';
-
 export default {
+
   name: 'Exchange',
   data () {
     return {

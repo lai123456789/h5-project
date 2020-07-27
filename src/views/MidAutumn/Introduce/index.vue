@@ -1,5 +1,12 @@
 <template>
   <div class="sign-ctr">
+    <div>
+      <van-button type="default">默认按钮</van-button>
+      <van-button type="primary">主要按钮</van-button>
+      <van-button type="info">信息按钮</van-button>
+      <van-button type="warning">警告按钮</van-button>
+      <van-button type="danger">危险按钮</van-button>
+    </div>
     <img class='bg' src="../../../image/Introduce_bg.png" alt="">
     <div class="dui-btn" @click="toExchange">
       <img src="../../../image/mid_dui_btn.png" alt="">
@@ -18,6 +25,7 @@ import puGetSearch from '@/utils/puGetSearch'
 import { getWeCodeA } from '@/service/requestFun.js'
 import { midLoginApiF, activityPayApiF } from '@/service/requestFun'
 import { setToken, getToken } from '@/common/js/ut'
+
 // @ is an alias to /src
 export default {
   name: 'Introduce',
@@ -26,7 +34,8 @@ export default {
       isSubscribe: true
     }
   },
-  components: {},
+    components:{
+    },
   methods: {
     toExchange() {
       this.$router.push({

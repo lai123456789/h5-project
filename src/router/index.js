@@ -17,6 +17,11 @@ const VueRouter = new Router({
       component: MidHome,
       children: [
         {
+          path: '/memberActivited',
+          name: 'MemberActivited',
+          component: MemberActivited
+        },
+        {
           path: 'exchange',
           name: 'Exchange',
           component: Exchange
@@ -33,11 +38,7 @@ const VueRouter = new Router({
         }
       ]
     },
-    {
-      path: '/memberActivited',
-      name: 'MemberActivited',
-      component: MemberActivited
-    },
+
     {
         path: '/error',
         name: 'error',
