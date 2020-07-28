@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
+import 'animate.css'
 import 'mint-ui/lib/style.css'
 import LinkageBase from './components/linkageBase';
 import ShowScan from './components/ShowScan/index'

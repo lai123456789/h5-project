@@ -2,7 +2,6 @@
     <div class="show-code" v-if="!isSubscribe">
         <div class="show-code-wrap">
             <p>请先关注公众号，再进行抽奖</p>
-            <img src="../../image/scan_er.png" alt="">
         </div>
     </div>
 </template>
@@ -52,6 +51,6 @@ export default {
         height: rem(535);
       }
     }
-    
+
   }
 </style>
