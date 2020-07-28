@@ -5,6 +5,7 @@ const MemberActivited = () => import('../views/MemberActivited/index')
 const Error = () => import('../views/Error/index') // 404
 //H5接单页面
 const Home = () => import('../views/Home/index')
+const jifenpaihang = () => import('../views/jifenpaihang/index')
 Vue.use(Router)
 const VueRouter = new Router({
   mode: 'history',//本地dist文件打开用hash模式才能显示页面  调用后端接口了发布服务器用history
@@ -24,6 +25,11 @@ const VueRouter = new Router({
           component: Home
         }
       ]
+    },
+    {
+      path: '/jifenpaihang',
+      name: 'jifenpaihang',
+      component: jifenpaihang
     },
     {
       path: '/error',

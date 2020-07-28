@@ -11,13 +11,32 @@
     z-index: 159766;
     width: 100%;
     height: 100%;
+    .van-popup{
+      background: transparent !important;
+      text-align: center;
+      .chou1{
+        width: rem(616);
+        height: rem(860);
+      }
+      .chou2{
+        width: rem(458);
+        height: rem(134);
+      }
+    }
+
     .mainTop{
       height: 60%;
       width: 100%;
       background-image: url("../../image/mainTopBg.png");
       background-size: 100% 100%;
       position: relative;
-
+      .wendaImg{
+        position: absolute;
+        top: rem(50);
+        right: 0;
+        width: rem(151);
+        height: rem(56);
+      }
       .mainTopImg{
         height: 100%;
         width: 100%;
@@ -164,20 +183,26 @@
         height: 80%;
         width: 100%;
         font-size: 0;
-        //position: absolute;
-        //bottom: 0;
-        //background: red;
         text-align: center;
-        //padding-top: rem(55);
-        //padding-top: 8%;
         img{
           height: 30%;
           width: rem(780);
-          //margin-bottom: rem(10);
         }
         img:nth-of-type(1){
           height: 35%;
         }
+        img:nth-of-type(2){
+          height: 9%;
+          margin-top: rem(-10);
+        }
+        img:nth-of-type(3){
+          margin-top: rem(-10);
+        }
+      }
+      .bText{
+        color: #90D7FF;
+        text-align: center;
+        padding-top: rem(20);
       }
     }
 
