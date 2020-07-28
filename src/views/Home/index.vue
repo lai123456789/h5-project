@@ -1,29 +1,34 @@
 <template>
   <div class="index-ctr">
-    <!--自定义过渡类名
-      enter-class
-      enter-active-class
-      enter-to-class (2.1.8+)
-      leave-class
-      leave-active-class
-      leave-to-class (2.1.8+)
-  -->
-    <button @click="btnClick">change</button>
-    <transition
-      name="fade"
-      enter-active-class="active"
-      leave-active-class="leave"
-    >
-      <div v-if="show">hello</div>
-    </transition>
-    <hr>
-    <transition
-      name="fade2"
-      enter-active-class="animated swing"
-      leave-active-class="animated shake"
-    >
-      <div v-if="show">hello</div>
-    </transition>
+    <div class="main">
+      <div class="mainTop">
+        <img src="../../image/mainTop1.png" alt="" class="mainTopImg">
+        <div class="dengLeft">
+          <img src="../../image/deng.png" alt="" class="">
+        </div>
+        <div class="dengRight">
+          <img src="../../image/deng.png" alt="" class="">
+        </div>
+        <img src="../../image/maintitle.png" alt="" class="bigTextImg">
+        <img src="../../image/subtitle.png" alt="" class="smallTextImg">
+        <img src="../../image/jinbi.png" alt="" class="jinbiImg">
+        <img src="../../image/redcolor.png" alt="" class="redImg">
+        <img src="../../image/redBag.png" alt="" class="redBagImg">
+        <img src="../../image/weidati.png" alt="" class="weidati" @click="dati" v-show="show">
+        <img src="../../image/dati.png" alt="" class="weidati" @click="dati" v-show="!show">
+      </div>
+      <div style="height: 0.2rem;width: 100%;background: #3B42CC !important;"></div>
+      <div class="mainBottom">
+        <div class="bottomIndex">
+          <img src="../../image/t11.png" alt="">
+          <img src="../../image/t22.png" alt="">
+          <img src="../../image/t33.png" alt="">
+        </div>
+      </div>
+
+
+    </div>
+
   </div>
 </template>
 
@@ -34,12 +39,12 @@ export default {
   name: 'Error',
   data () {
     return {
-      show:true
+      show:true,
     }
   },
   components: {},
   methods: {
-    btnClick:function () {
+    dati(){
       this.show = !this.show
     }
   },
