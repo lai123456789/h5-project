@@ -1,212 +1,170 @@
 @import '../../common/css/rem';
 @import '../../common/css/const';
 .index-ctr {
-  width: 100%;
-  height: 100%;
-
-  .main{
-    //background-image: url("../../image/mainBg.png");
-    //background-size: 100% 100%;
-    position: relative;
-    z-index: 159766;
+  .main-top{
     width: 100%;
-    height: 100%;
-    .van-popup{
-      background: transparent !important;
-      text-align: center;
-      .chou1{
-        width: rem(616);
-        height: rem(860);
-      }
-      .chou2{
-        width: rem(458);
-        height: rem(134);
-      }
-    }
-
-    .mainTop{
-      height: 60%;
+    img{
       width: 100%;
-      background-image: url("../../image/mainTopBg.png");
-      background-size: 100% 100%;
-      position: relative;
-      .wendaImg{
-        position: absolute;
-        top: rem(50);
-        right: 0;
-        width: rem(151);
-        height: rem(56);
-      }
-      .mainTopImg{
-        height: 100%;
-        width: 100%;
-      }
-      .dengLeft,.dengRight{
-        position: absolute;
-        top: rem(290);
-        width: rem(12);
-        height: rem(76);
-        img{
-          width: auto;
-          height: auto;
-          max-width: 100%;
-          max-height: 100%;
-
-        }
-      }
-      .dengLeft{
-        left: rem(53);
-        img{
-          animation: glint 2s infinite forwards;
-          animation-delay:1s;
-          @keyframes glint {
-            0%{
-              opacity: 0;
-            }
-            50%{
-              opacity: 0.7;
-            }
-            100%{
-              opacity: 0;
-            }
-          }
-        }
-      }
-      .dengRight{
-        right: rem(64);
-        img{
-          animation: glint 2s infinite forwards;
-          @keyframes glint {
-            0%{
-              opacity: 0;
-            }
-            50%{
-              opacity: 0.7;
-              //transform:scale(2);
-            }
-            100%{
-              opacity: 0;
-            }
-          }
-        }
-      }
-      .bigTextImg{
-        position: absolute;
-        top: rem(207);
-        left: rem(180);
-        width: rem(387);
-        height: rem(213);
-        animation: scale 2s linear;
-        //animation-delay:1s;
-        @keyframes scale {
-          0%{
-            opacity: 0;
-            transform: scale(0.2);
-          }
-          25%{
-            opacity: 0.2;
-            transform: scale(0.4);
-          }
-          50%{
-            opacity: 0.4;
-            transform: scale(0.6);
-          }
-          75%{
-            opacity: 0.6;
-            transform: scale(0.8);
-          }
-          100%{
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-      }
-      .smallTextImg{
-        position: absolute;
-        top: rem(430);
-        left: rem(200);
-        width: rem(367);
-        height: rem(67);
-      }
-      .jinbiImg{
-        position: absolute;
-        top: rem(480);
-        right: rem(180);
-        width: rem(44);
-        height: rem(48);
-      }
-      .redImg{
-        position: absolute;
-        top: rem(530);
-        right: rem(250);
-        width: rem(30);
-        height: rem(38);
-      }
-      .redBagImg{
-        position: absolute;
-        top: rem(350);
-        left: rem(120);
-        width: rem(94);
-        height: rem(89);
-        animation: trans 2s infinite linear;
-        animation-direction:alternate;//反向执行动画
-        animation-delay:2s;//延迟多少秒才执行动画
-        @keyframes trans {
-          0%{
-            transform: translateY(50%);
-          }
-          50%{
-            transform: translateY(0);
-          }
-          100%{
-            transform: translateY(70%);
-          }
-        }
-      }
-      .weidati{
-        position: absolute;
-        //top: 50%;
-        left: 50%;
-        bottom: 0;
-        transform: translate(-50%,-50%);
-        text-align: center;
-        width: rem(520);
-        height: rem(118);
-      }
-    }
-    .mainBottom{
-      height: 40%;
-      width: 100%;
-      background-image: url("../../image/mainBottom.png");
-      background-size: 100% 100%;
-      .bottomIndex{
-        height: 80%;
-        width: 100%;
-        font-size: 0;
-        text-align: center;
-        img{
-          height: 30%;
-          width: rem(780);
-        }
-        img:nth-of-type(1){
-          height: 35%;
-        }
-        img:nth-of-type(2){
-          height: 9%;
-          margin-top: rem(-10);
-        }
-        img:nth-of-type(3){
-          margin-top: rem(-10);
-        }
-      }
-      .bText{
-        color: #90D7FF;
-        text-align: center;
-        padding-top: rem(20);
-      }
+      height: 100%;
     }
 
   }
+  .content{
+    background: #FFFFFF;
+    margin-top: rem(-25);
+    border-top-left-radius: rem(20);
+    border-top-right-radius: rem(20);
+    position: relative;
+    .mainTitle{
+      display: flex;
+      justify-content: space-around;
+      padding: rem(36) 0;
+      div{
+        text-align: center;
+        img{
+          width: rem(130);
+          height: rem(130);
+        }
+        p{
+          font-size: rem(24);
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #423B3B;
+          line-height: rem(30);
+        }
+      }
+    }
+    .ctnTop{  /*公用*/
+      padding:0 rem(40);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      img{
+        width: rem(542);
+        height: rem(60);
+      }
+      p{
+        white-space: nowrap;
+        font-size: rem(24);
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: #8A7F7D;
+      }
+    }
+    .shufa{
+      .ctnContent{
+        margin: rem(15) 0 rem(30) rem(40);
+        display: flex;
+        overflow: scroll;
+        img{
+          border-radius: rem(10);
+          width: rem(285);
+          height: rem(180);
+          margin-right: rem(30);
+        }
+      }
+    }
+    .huihua{
+      .huihuaContent{
+        .huihuaItem{
+          margin: rem(15) rem(40) rem(30) rem(40);
+          box-shadow: 0 rem(8) rem(15) 0 rgba(237, 105, 87, 0.3);
+          border-radius: rem(10);
+          img{
+            width: 100%;
+            height: rem(265);
+          }
+          div{
+            padding: rem(30);
+            p:nth-of-type(1){
+              font-size: rem(26);
+              font-family: Source Han Sans CN;
+              font-weight: 500;
+              color: #504643;
+              line-height: rem(44);
+            }
+            p:nth-of-type(2){
+              font-size: rem(22);
+              font-family: Source Han Sans CN;
+              font-weight: 400;
+              color: #A39F9D;
+              line-height: rem(30);
+            }
+          }
+        }
+      }
+    }
+    .sheying{
+      .sheyingContent{
+        //padding: rem(15) rem(40);
+        padding-left: rem(40);
+        padding-top: rem(15);
+        img{
+          width: rem(320);
+          height: rem(315);
+          border-radius: rem(10);
+          margin: 0 .3rem .3rem 0;
+          float: left;
+        }
+      }
+    }
+  }
+  .van-popup{
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    width: 100%;
+    height: 100%;
+    .all{
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      justify-content: space-around;
+    }
+  }
+  .van-overlay{
 
+  }
+  .alitem{
+    display: flex;
+    align-items: center;
+  }
+  .p-content{
+    height: 100%;
+    .p1{
+      text-align: center;
+      img{
+        width: rem(550);
+        //height: rem(1027);
+      }
+    }
+    .p2{
+      //text-align: center;
+      div:nth-of-type(1){
+        padding: rem(30) rem(70);
+        p{
+          line-height: rem(40);
+          font-size: rem(26);
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #FFFFFF;
+        }
+        span{
+          color: #B2B2B2;
+        }
+      }
+      div:nth-of-type(2){
+        width: rem(160);
+        height: rem(70);
+        border-radius: rem(40);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border:rem(2) solid #FFFFFF;
+        color: #FFFFFF;
+        margin: 0 auto;
+
+      }
+    }
+  }
 }
 

@@ -1,46 +1,46 @@
-const domain = "http://192.168.7.112:8080";
-// const domain = "";
+// let d = 'http://hndn7e.natappfree.cc'
+
+// let d = 'http://192.168.7.200:8088'  //开发环境
+let d = 'http://m.chengmall.cn'  //
+// let d = 'http://test.chengmall.cn'  //生产环境
+
 module.exports = {
-//基本路径
-  publicPath: '',//默认的'/'是绝对路径，如果不确定在根路径，改成相对路径'./'
-// 输出文件目录
-  outputDir: 'dist',
-  assetsDir:'static',
-  indexPath:'index.html',
-// eslint-loader 是否在保存的时候检查
-  lintOnSave: true,
-// 生产环境是否生成 sourceMap 文件
-  productionSourceMap: false,
-// css相关配置
-  css: {
-// 是否使用css分离插件 ExtractTextPlugin
-    extract: true,
-// 开启 CSS source maps?
-    sourceMap: false,
-  },
-// webpack-dev-server 相关配置
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/', //打包到生产环境使用./
   devServer: {
-    open: false,//open 在devServer启动且第一次构建完成时，自动用我们的系统的默认浏览器去打开要开发的网页
-    host: '0.0.0.0',//默认是 localhost。如果你希望服务器外部可访问，指定如下 host: '0.0.0.0'，设置之后之后可以访问ip地址
-    port: 8080,
-    hot:true,//hot配置是否启用模块的热替换功能，devServer的默认行为是在发现源代码被变更后，通过自动刷新整个页面来做到事实预览，开启hot后，将在不刷新整个页面的情况下通过新模块替换老模块来做到实时预览。
-    https: false,
-    hotOnly: false,// hot 和 hotOnly 的区别是在某些模块不支持热更新的情况下，前者会自动刷新页面，后者不会刷新页面，而是在控制台输出热更新失败
-    proxy: { //代理  解决跨域  例如请求到 /api/users 现在会被代理到请求 http://localhost:3000/api/users。
+    proxy: {
+      // '/api': {
+      //     target: 'http://testweixin.51vip.biz',
+      //     changeOrigin: true
+      // },
+      // '/api': {
+      //     target: 'http://192.168.7.155:8088',
+      //     changeOrigin: true
+      // },
+      '/wx': {
+        target: d,
+        changeOrigin: true
+      },
       '/api': {
-        target: domain, //填后端接口域名 可以是ip、localhost  防止跨域问题
-        secure: false, //false为http访问，true为https访问
-        changeOrigin: true, //是否跨域
-        pathRewrite: {
-          '^/api': '' //重写接口
-        }
+        target: d,
+        changeOrigin: true
+      },
+      '/common': {
+        target: d,
+        changeOrigin: true
       }
-    }, // 设置代理
-    before: app => {}
-  },
-// 第三方插件配置
-  pluginOptions: {
-// ...
+      // '/wx': {
+      //     target: 'http://m.chengmall.cn',
+      //     changeOrigin: true
+      // },
+      // '/api': {
+      //     target: 'http://m.chengmall.cn',
+      //     changeOrigin: true
+      // },
+      // '/common': {
+      //     target: 'http://m.chengmall.cn',
+      //     changeOrigin: true
+      // }
+    },
+    disableHostCheck: true
   }
 }
-

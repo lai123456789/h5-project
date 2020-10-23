@@ -13,8 +13,10 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 // 全局ajax请求拦截器
 // POST传参序列化
 axios.interceptors.request.use((config) => {
-  if (config.method === 'post') {
-    config.data = qs.stringify(config.data)
+  if (config.method === 'post' || config.method == 'POST') {
+    if (config.headers && config.headers['Content-Type'] && config.headers['Content-Type'].indexOf('application/json') < 0) {
+      config.data = qs.stringify(config.data)
+    }
   }
   return config
 }, (error) => {
@@ -24,6 +26,7 @@ const _closeLoading = () => { Store.dispatch('showLoading', false) };
 const _openLoading = () => { Store.dispatch('showLoading', true) };
 
 const fetchs = (options, fun) => {
+  // Vue.prototype.$toast('454')
   let params = options.data || {}
   let _header = Object.assign({}, options.header)
   params = formatParams(params); // 参数序列化
@@ -34,7 +37,8 @@ const fetchs = (options, fun) => {
   //   axios.defaults.headers['Access-Token'] = '';
   // }
   setTimeout(_openLoading, 0);
-  setTimeout(_closeLoading, 30000); // 防止接口报错，后台30s不返回数据，过30s后loading消失
+  // setTimeout(_closeLoading, 30000); // 防止接口报错，后台30s不返回数据，过30s后loading消失
+  setTimeout(_closeLoading, 300); // 防止接口报错，后台30s不返回数据，过30s后loading消失
   let _config = {
     url: options.url,
     method: options.method || 'GET'
@@ -46,32 +50,34 @@ const fetchs = (options, fun) => {
   }
   return new Promise((resolve, reject) => {
     axios({
-      url: options.url,
-      params: params,
-      method: options.method || 'GET',
       headers: {
-        webToken: getToken() || '',
+        // UserAuthentication: getToken() || '',
         ..._header
-      }
+      },
+      ..._config
     })
       .then(response => {
         setTimeout(_closeLoading, 500);
         let { status, data } = response
         let errorCode = data.code === undefined ? 'none' : Number(data.code)
-        let errMsg = data.message
+        let errMsg = data.msg
         let result = data.data
         if (status == 200) {
           if (errorCode == 0) {
-             resolve(result)
+            resolve(result)
           } else if (errorCode == 401) {
-            getWeCodeA(APP_ID)
+            getWeCodeA(APP_ID)  //先不验证登录
+            console.log("返回401之后 登录校验")
+            reject(errMsg)
           } else if (errorCode == 403) {
-            Store.dispatch('showScan', false)
+            Store.dispatch('showScan', false)  //这里 先注释强制关注 团圆年 分享链接逻辑 后面活动结束再打开
+            reject(errMsg)
           } else {
+            reject(errMsg)
             Vue.prototype.$toast(errMsg)
           }
         } else {
-          console.log('系统错误')
+          Vue.prototype.$toast('系统错误')
         }
       })
       .catch((error) => {

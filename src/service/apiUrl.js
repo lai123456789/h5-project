@@ -12,9 +12,21 @@ const midPrizeDrawApi = () => `${Domain}/api/prize/draw`
 // 获取jsapi配置
 const jsConfigApi = () => `${Domain}/wx/js/config`
 
+// 获取作品列表
+const photoListApi = () => `${Domain}/api/Index.php?action=photoList`
+
+// 关键词搜索
+const searchApi = () => `${Domain}/api/Index.php?action=search`
+const jumpApi = () => `${Domain}/api/Index.php?action=getPhoto`
+const getDateApi = () => `${Domain}/api/Index.php?action=getDate`
+
 export {
   jsConfigApi,
   midLoginApi,
   midPrizeDrawApi,
-  userIsloginApi
+  userIsloginApi,
+  photoListApi,
+  searchApi,
+  jumpApi,
+  getDateApi
 };

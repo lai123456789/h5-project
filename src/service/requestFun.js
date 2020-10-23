@@ -2,7 +2,8 @@ import Vue from "vue";
 import fetch from './index';
 import packagePromise from './packagePromise'
 import {
-  midLoginApi, midPrizeDrawApi, userIsloginApi
+  midLoginApi, midPrizeDrawApi, userIsloginApi,
+  photoListApi,searchApi,jumpApi,getDateApi
 } from './apiUrl';
 import { APP_ID } from '../config'
 import {getUrlExCode} from '../utils/urlUtil'
@@ -74,10 +75,79 @@ const getWeCodeA = () => {
   location.replace(realUrl)
 }
 
+// 获取作品列表
+const photoListApiF = (data,fun) => packagePromise((resolve, reject) => {
+  fetch({
+    url: photoListApi(),
+    method: 'POST',
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    },
+    data
+  })
+    .then(msg => {
+      resolve(msg)
+    })
+    .catch(err => reject(err))
+
+})
+
+// 关键词搜索
+const searchApiF = (data,fun) => packagePromise((resolve, reject) => {
+  fetch({
+    url: searchApi(),
+    method: 'POST',
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    },
+    data
+  })
+    .then(msg => {
+      resolve(msg)
+    })
+    .catch(err => reject(err))
+})
+
+// 上一页下一页
+const jumpApiF = (data,fun) => packagePromise((resolve, reject) => {
+  fetch({
+    url: jumpApi(),
+    method: 'POST',
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    },
+    data
+  })
+    .then(msg => {
+      resolve(msg)
+    })
+    .catch(err => reject(err))
+})
+
+// 获取活动日期
+const getDateApiF = (data,fun) => packagePromise((resolve, reject) => {
+  fetch({
+    url: getDateApi(),
+    method: 'POST',
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    },
+    data
+  })
+    .then(msg => {
+      resolve(msg)
+    })
+    .catch(err => reject(err))
+})
+
 export {
   // SuccessTips,
   getWeCodeA,
   midLoginApiF,
   midPrizeDrawApiF,
-  userIsloginApiF
+  userIsloginApiF,
+  photoListApiF,
+  searchApiF,
+  jumpApiF,
+  getDateApiF
 }
