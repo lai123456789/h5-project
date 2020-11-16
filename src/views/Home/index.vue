@@ -70,7 +70,7 @@
     <van-popup v-model="show">
       <div class="all">
         <img src="../../image/left.png" alt="" @click="jump(showParam,'prev')">
-        <div class="p-content"  :class="type == 2?'alitem':''">
+        <div class="p-content"  :class="type == 2?'alitem':showParam.tag == '水彩'?'alitem':''">
           <div class="index">
             <div class="p1">
               <img :src="domain + showParam.src" alt="">
@@ -134,6 +134,7 @@ export default {
                   age:res.age[0],
                   name:res.name[0],
                   photo_name:res.photo_name[0],
+                  tag:res.tag[0]
               }
               console.log(object)
               this.showParam = {}
@@ -147,7 +148,8 @@ export default {
       },
       search(name,index,another){
           let par = {
-              name:name
+              name:name,
+              type:index
           }
           this.type = index
           let t = this
@@ -160,7 +162,8 @@ export default {
                   source:res.source[0],
                   age:res.age[0],
                   name:res.name[0],
-                  Id:res.Id[0]
+                  Id:res.Id[0],
+                  tag:res.tag[0]
               }
               t.Id = res.Id[0]
               console.log(t.showParam)

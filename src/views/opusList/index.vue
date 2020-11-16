@@ -1,8 +1,8 @@
 <template>
   <div class="index-ctr">
     <van-popup v-model="show">
-        <img src="../../image/left.png" alt="" @click="jump(showParam,'prev')">
-        <div class="p-content" :class="type == 2?'alitem':''">  <!--摄影的时候才加上这个居中样式-->
+        <img src="../../image/left.png" alt="" @click="jump(showParam,'prev')" v-if="showButton">
+        <div class="p-content" :class="type == 2?'alitem':showParam.tag == '水彩'?'alitem':''">  <!--摄影的时候才加上这个居中样式-->
           <div class="index">
             <div class="p1">
               <img :src="domain + showParam.src" alt="">
@@ -23,7 +23,7 @@
           </div>
 
         </div>
-        <img src="../../image/right.png" alt="" @click="jump(showParam,'next')">
+        <img src="../../image/right.png" alt="" @click="jump(showParam,'next')"  v-if="showButton">
     </van-popup>
     <div class="main-top">
       <p>{{getDateA.title}}</p>
@@ -75,7 +75,8 @@
                 loading: false,
                 finished: false,
                 page:0,
-                Id:""
+                Id:"",
+                showButton:true
             }
         },
         components: {},
@@ -89,42 +90,66 @@
                 })
             },
             jump(e,name){
-                if(name == "prev"){
-                    this.Id = Number(this.Id)-1
-                }
-                if(name == "next"){
-                    this.Id = Number(this.Id)+1
-                }
                 let param = {
                     type:this.type,
                     Id:this.Id
                 }
-                jumpApiF(param).then(res => {
-                    console.log(res)
-                    if(res.name[0] == "null" || res.name[0] == null){
-                        this.$toast('暂无更多信息')
-                        return
+                if(name == "prev"){
+                    if(Number(this.Id) >= 1){
+                        this.Id = Number(this.Id)-1
+                        jumpApiF(param).then(res => {
+                            let object = {
+                                thumb_src:res.thumb_src[0],
+                                src:res.src[0],
+                                source:res.source[0],
+                                age:res.age[0],
+                                name:res.name[0],
+                                photo_name:res.photo_name[0],
+                                tag:res.tag[0]
+                            }
+                            this.showParam = {}
+                            this.showParam = object
+                        }).catch(err => {
+                        })
+                    }else{
+                        this.$toast('暂无数据')
                     }
+                }
+                if(name == "next"){
+                    if(Number(this.Id) <= 223){
+                        this.Id = Number(this.Id)+1
+                        jumpApiF(param).then(res => {
+                            console.log(res)
+                            // if(res.name[0] == "null" || res.name[0] == null){
+                            //     this.$toast('暂无更多信息')
+                            //     return
+                            // }
+                            let object = {
+                                thumb_src:res.thumb_src[0],
+                                src:res.src[0],
+                                source:res.source[0],
+                                age:res.age[0],
+                                name:res.name[0],
+                                photo_name:res.photo_name[0],
+                                tag:res.tag[0]
+                            }
+                            console.log("object")
+                            console.log(object)
+                            this.showParam = {}
+                            this.showParam = object
+                        }).catch(err => {
+                        })
+                    }else{
+                        this.$toast('暂无数据')
+                    }
+                }
 
-                    let object = {
-                        thumb_src:res.thumb_src[0],
-                        src:res.src[0],
-                        source:res.source[0],
-                        age:res.age[0],
-                        name:res.name[0],
-                        photo_name:res.photo_name[0],
-                    }
-                    console.log(object)
-                    this.showParam = {}
-                    this.showParam = object
-                }).catch(err => {
-                })
             },
             Info(item){
-                console.log(item)
                 this.Id = item.Id
                 this.showParam = item
                 this.show = !this.show
+
             },
             close(){
                 this.show = !this.show
@@ -139,7 +164,7 @@
                     this.page++
                     console.log(this.page)
                     let {thumb_src,src,source,
-                        age,name,photo_name,Id} = res
+                        age,name,photo_name,Id,tag} = res
                     // this.List = []
                     for(let x in source){
                         let object = {
@@ -149,7 +174,8 @@
                             age:age[x],
                             name:name[x],
                             photo_name:photo_name[x],
-                            Id:Id[x]
+                            Id:Id[x],
+                            tag:tag[x]
                         }
                         this.List = this.List.concat(object)
                     }
@@ -170,9 +196,10 @@
                     this.loading = true
                 },500)
             },
-            clickAll: debounce(function() {   //防抖函数  500毫秒执行一次
+            clickAll: debounce(function() {   //防抖函数  1000毫秒执行一次
                 let name = this.searchName
                 if(name == "" || name == null){
+                    this.showButton = true
                     this.List = []
                     this.page = 0
                     this.finished = false
@@ -180,12 +207,16 @@
                     return
                 }
                 let search = {
-                    name:name
+                    name:name,
+                    type:this.type
                 }
                 searchApiF(search).then(res => {
                     this.List = []
+                    this.finished = true //停止分页
+
+                    this.showButton = false //查询内容 点击不显示左右按钮
                     let {thumb_src,src,source,
-                        age,name,Id} = res
+                        age,name,Id,photo_name,tag} = res
                     for(let x in source){
                         let object = {
                             thumb_src:thumb_src[x],
@@ -193,7 +224,9 @@
                             source:source[x],
                             age:age[x],
                             name:name[x],
-                            Id:Id[x]
+                            Id:Id[x],
+                            photo_name:photo_name[x],
+                            tag:tag[x]
                         }
                         this.List = this.List.concat(object)
                     }

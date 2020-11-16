@@ -1,8 +1,13 @@
 <template>
   <div class="title-ctr"  @click="toTitlePageNext">
     <div>
-      <p>{{getDateA.text}}</p>
-      <p>{{getDateA.date}}</p>
+<!--      {{getDateA.text}}-->
+<!--      <div>-->
+        <p>11月12日起，</p>
+        <p>两期作品将汇集展览一年，</p>
+        <p>欢迎随时扫码观览</p>
+<!--      </div>-->
+<!--      <p>{{getDateA.date}}</p>-->
     </div>
     <img src="../../image/animateRight.png" alt="">
   </div>
